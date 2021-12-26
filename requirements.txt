@@ -1,0 +1,4 @@
+tensorflow-gpu==1.15.0
+gensim==3.7.3
+sklearn
+numpy
