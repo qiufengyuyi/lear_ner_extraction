@@ -132,6 +132,7 @@ class BertModel(object):
                  is_training,
                  input_ids,
                  text_length,
+                 input_mask=None,
                  token_type_ids=None,
                  use_one_hot_embeddings=True,
                  scope="bert",is_minilm=False):
@@ -162,7 +163,8 @@ class BertModel(object):
         input_shape = get_shape_list(input_ids, expected_rank=2)
         batch_size = input_shape[0]
         seq_length = input_shape[1]
-        input_mask = tf.sequence_mask(lengths=text_length, dtype=tf.int32)
+        if input_mask is None:
+            input_mask = tf.sequence_mask(lengths=text_length, dtype=tf.int32)
         # if input_mask is None:
         #   input_mask = tf.ones(shape=[batch_size, seq_length], dtype=tf.int32)
 
